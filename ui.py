@@ -1246,54 +1246,54 @@ def show_prediction_interface(show_nav=True):
         # Memory capability mapping
         memory_mapping = {"poor": 0, "medium": 1, "excellent": 2}
         selected_memory = st.selectbox("Memory Capability Score:", list(memory_mapping.keys()))
-        memory_score = memory_mapping[selected_memory]
+memory_score = memory_mapping[selected_memory]
 
         # Yes/No encoded fields
-        self_learning_capability = 1 if st.selectbox("Self-Learning Capability?", ["No", "Yes"]) == "Yes" else 0
-        extra_courses = 1 if st.selectbox("Did Extra Courses?", ["No", "Yes"]) == "Yes" else 0
-        senior_input = 1 if st.selectbox("Taken Inputs from Seniors?", ["No", "Yes"]) == "Yes" else 0
-        team_work = 1 if st.selectbox("Worked in Teams?", ["No", "Yes"]) == "Yes" else 0
-        introvert = 1 if st.selectbox("Are you Introvert?", ["No", "Yes"]) == "Yes" else 0
+self_learning_capability = 1 if st.selectbox("Self-Learning Capability?", ["No", "Yes"]) == "Yes" else 0
+extra_courses = 1 if st.selectbox("Did Extra Courses?", ["No", "Yes"]) == "Yes" else 0
+senior_input = 1 if st.selectbox("Taken Inputs from Seniors?", ["No", "Yes"]) == "Yes" else 0
+team_work = 1 if st.selectbox("Worked in Teams?", ["No", "Yes"]) == "Yes" else 0
+introvert = 1 if st.selectbox("Are you Introvert?", ["No", "Yes"]) == "Yes" else 0
 
-        skill_mapping = {"poor": 0, "medium": 1, "excellent": 2}
+skill_mapping = {"poor": 0, "medium": 1, "excellent": 2}
         selected_skill = st.selectbox("Reading/Writing Skills Level:", list(skill_mapping.keys()))
-        skill_value = skill_mapping[selected_skill]
-        rw_skills = skill_value
+skill_value = skill_mapping[selected_skill]
+rw_skills = skill_value
 
     with col2:
         st.markdown("### 🎯 Preferences & Interests")
 
-        # Binary checkboxes
-        b_hard_worker = 1 if st.checkbox("Are you a Hard Worker?") else 0
-        b_smart_worker = 1 if st.checkbox("Are you a Smart Worker?") else 0
-        a_management = 1 if st.checkbox("Aspired Management Role?") else 0
-        a_technical = 1 if st.checkbox("Aspired Technical Role?") else 0
+# Binary checkboxes
+b_hard_worker = 1 if st.checkbox("Are you a Hard Worker?") else 0
+b_smart_worker = 1 if st.checkbox("Are you a Smart Worker?") else 0
+a_management = 1 if st.checkbox("Aspired Management Role?") else 0
+a_technical = 1 if st.checkbox("Aspired Technical Role?") else 0
 
-        # Certification mapping
-        certification_mapping = {
+# Certification mapping
+certification_mapping = {
             'information security': 4, 'shell programming': 8, 'r programming': 7,
             'distro making': 1, 'machine learning': 5, 'full stack': 2,
             'hadoop': 3, 'app development': 0, 'python': 6
         }
-        selected_cert = st.selectbox("Select a Certification:", list(certification_mapping.keys()))
-        cert_value = certification_mapping[selected_cert]
+selected_cert = st.selectbox("Select a Certification:", list(certification_mapping.keys()))
+cert_value = certification_mapping[selected_cert]
 
-        # Book type mapping
-        book_type_mapping = {
+# Book type mapping
+book_type_mapping = {
             'Series': 28, 'Autobiographies': 3, 'Travel': 29, 'Guide': 13,
             'Health': 14, 'Journals': 17, 'Anthology': 1, 'Dictionaries': 9
         }
-        selected_book_type = st.selectbox("Select Interested Type of Books:", list(book_type_mapping.keys()))
-        book_type_value = book_type_mapping[selected_book_type]
+selected_book_type = st.selectbox("Select Interested Type of Books:", list(book_type_mapping.keys()))
+book_type_value = book_type_mapping[selected_book_type]
 
-        # Workshop mapping
-        workshop_mapping = {
+# Workshop mapping
+workshop_mapping = {
             'testing': 6, 'database security': 2, 'game development': 3,
             'data science': 1, 'system designing': 5, 'hacking': 4,
             'cloud computing': 0, 'web technologies': 7
         }
-        selected_workshop = st.selectbox("Select a Workshop Attended:", list(workshop_mapping.keys()))
-        workshop_value = workshop_mapping[selected_workshop]
+selected_workshop = st.selectbox("Select a Workshop Attended:", list(workshop_mapping.keys()))
+workshop_value = workshop_mapping[selected_workshop]
 
     # Additional fields in full width
     st.markdown("### 🏢 Career Preferences")
@@ -1301,33 +1301,33 @@ def show_prediction_interface(show_nav=True):
     col3, col4 = st.columns(2)
 
     with col3:
-        # Interested subjects mapping
-        subject_mapping = {
+# Interested subjects mapping
+subject_mapping = {
             'programming': 9, 'Management': 2, 'data engineering': 5,
             'networks': 7, 'Software Engineering': 3, 'cloud computing': 4,
             'parallel computing': 8, 'IOT': 1, 'Computer Architecture': 0, 'hacking': 6
         }
-        selected_subject = st.selectbox("Select an Interested Subject:", list(subject_mapping.keys()))
-        subject_value = subject_mapping[selected_subject]
+selected_subject = st.selectbox("Select an Interested Subject:", list(subject_mapping.keys()))
+subject_value = subject_mapping[selected_subject]
 
-        # Interested career area mapping
-        career_area_mapping = {
+# Interested career area mapping
+career_area_mapping = {
             'testing': 5, 'system developer': 4, 'Business process analyst': 0,
             'security': 3, 'developer': 2, 'cloud computing': 1
         }
-        selected_career_area = st.selectbox("Select Your Interested Career Area:", list(career_area_mapping.keys()))
-        career_area_value = career_area_mapping[selected_career_area]
+selected_career_area = st.selectbox("Select Your Interested Career Area:", list(career_area_mapping.keys()))
+career_area_value = career_area_mapping[selected_career_area]
 
     with col4:
-        # Company type mapping
-        company_type_mapping = {
+# Company type mapping
+company_type_mapping = {
             'BPA': 0, 'Cloud Services': 1, 'product development': 9,
             'Testing and Maintainance Services': 7, 'SAaS services': 4,
             'Web Services': 8, 'Finance': 2, 'Sales and Marketing': 5,
             'Product based': 3, 'Service Based': 6
         }
-        selected_company_type = st.selectbox("Type of company you want to settle in?", list(company_type_mapping.keys()))
-        company_type_value = company_type_mapping[selected_company_type]
+selected_company_type = st.selectbox("Type of company you want to settle in?", list(company_type_mapping.keys()))
+company_type_value = company_type_mapping[selected_company_type]
 
     # Create input DataFrame (preserved original logic)
     input_data = pd.DataFrame([[Logical_quotient_rating, coding_skills_rating, hackathons, public_speaking_points, self_learning_capability,
