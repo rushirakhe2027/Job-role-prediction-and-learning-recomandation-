@@ -32,25 +32,25 @@ def init_database():
     cursor = conn.cursor()
     
     cursor.execute('''
-        CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT UNIQUE NOT NULL,
-            email TEXT UNIQUE NOT NULL,
-            password_hash TEXT NOT NULL,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            full_name TEXT
-        )
+    CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT UNIQUE NOT NULL,
+        email TEXT UNIQUE NOT NULL,
+        password_hash TEXT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        full_name TEXT
+    )
     ''')
     
     cursor.execute('''
-        CREATE TABLE IF NOT EXISTS user_predictions (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER,
-            prediction_result TEXT,
-            input_data TEXT,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (user_id) REFERENCES users (id)
-        )
+    CREATE TABLE IF NOT EXISTS user_predictions (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER,
+        prediction_result TEXT,
+        input_data TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users (id)
+    )
     ''')
     
     conn.commit()
@@ -88,8 +88,8 @@ def authenticate_user(username, password):
     cursor = conn.cursor()
     
     cursor.execute('''
-        SELECT id, username, email, password_hash, full_name
-        FROM users WHERE username = ?
+    SELECT id, username, email, password_hash, full_name
+    FROM users WHERE username = ?
     ''', (username,))
     
     user = cursor.fetchone()
@@ -1062,7 +1062,7 @@ def show_login_page():
     # Navigation
     col_nav1, col_nav2, col_nav3 = st.columns([1, 1, 1])
     with col_nav1:
-        if st.button("�� Home", key="login_home"):
+        if st.button("🏠 Home", key="login_home"):
             st.session_state.page = 'landing'
             st.rerun()
     with col_nav2:
@@ -1246,303 +1246,303 @@ def show_prediction_interface(show_nav=True):
         # Memory capability mapping
         memory_mapping = {"poor": 0, "medium": 1, "excellent": 2}
         selected_memory = st.selectbox("Memory Capability Score:", list(memory_mapping.keys()))
-memory_score = memory_mapping[selected_memory]
+        memory_score = memory_mapping[selected_memory]
 
         # Yes/No encoded fields
-self_learning_capability = 1 if st.selectbox("Self-Learning Capability?", ["No", "Yes"]) == "Yes" else 0
-extra_courses = 1 if st.selectbox("Did Extra Courses?", ["No", "Yes"]) == "Yes" else 0
-senior_input = 1 if st.selectbox("Taken Inputs from Seniors?", ["No", "Yes"]) == "Yes" else 0
-team_work = 1 if st.selectbox("Worked in Teams?", ["No", "Yes"]) == "Yes" else 0
-introvert = 1 if st.selectbox("Are you Introvert?", ["No", "Yes"]) == "Yes" else 0
+        self_learning_capability = 1 if st.selectbox("Self-Learning Capability?", ["No", "Yes"]) == "Yes" else 0
+        extra_courses = 1 if st.selectbox("Did Extra Courses?", ["No", "Yes"]) == "Yes" else 0
+        senior_input = 1 if st.selectbox("Taken Inputs from Seniors?", ["No", "Yes"]) == "Yes" else 0
+        team_work = 1 if st.selectbox("Worked in Teams?", ["No", "Yes"]) == "Yes" else 0
+        introvert = 1 if st.selectbox("Are you Introvert?", ["No", "Yes"]) == "Yes" else 0
 
-skill_mapping = {"poor": 0, "medium": 1, "excellent": 2}
+        skill_mapping = {"poor": 0, "medium": 1, "excellent": 2}
         selected_skill = st.selectbox("Reading/Writing Skills Level:", list(skill_mapping.keys()))
-skill_value = skill_mapping[selected_skill]
-rw_skills = skill_value
+        skill_value = skill_mapping[selected_skill]
+        rw_skills = skill_value
 
     with col2:
         st.markdown("### 🎯 Preferences & Interests")
 
-# Binary checkboxes
-b_hard_worker = 1 if st.checkbox("Are you a Hard Worker?") else 0
-b_smart_worker = 1 if st.checkbox("Are you a Smart Worker?") else 0
-a_management = 1 if st.checkbox("Aspired Management Role?") else 0
-a_technical = 1 if st.checkbox("Aspired Technical Role?") else 0
+        # Binary checkboxes
+        b_hard_worker = 1 if st.checkbox("Are you a Hard Worker?") else 0
+        b_smart_worker = 1 if st.checkbox("Are you a Smart Worker?") else 0
+        a_management = 1 if st.checkbox("Aspired Management Role?") else 0
+        a_technical = 1 if st.checkbox("Aspired Technical Role?") else 0
 
-# Certification mapping
-certification_mapping = {
+        # Certification mapping
+        certification_mapping = {
             'information security': 4, 'shell programming': 8, 'r programming': 7,
             'distro making': 1, 'machine learning': 5, 'full stack': 2,
             'hadoop': 3, 'app development': 0, 'python': 6
         }
-selected_cert = st.selectbox("Select a Certification:", list(certification_mapping.keys()))
-cert_value = certification_mapping[selected_cert]
+        selected_cert = st.selectbox("Select a Certification:", list(certification_mapping.keys()))
+        cert_value = certification_mapping[selected_cert]
 
-# Book type mapping
-book_type_mapping = {
+        # Book type mapping
+        book_type_mapping = {
             'Series': 28, 'Autobiographies': 3, 'Travel': 29, 'Guide': 13,
             'Health': 14, 'Journals': 17, 'Anthology': 1, 'Dictionaries': 9
         }
-selected_book_type = st.selectbox("Select Interested Type of Books:", list(book_type_mapping.keys()))
-book_type_value = book_type_mapping[selected_book_type]
+        selected_book_type = st.selectbox("Select Interested Type of Books:", list(book_type_mapping.keys()))
+        book_type_value = book_type_mapping[selected_book_type]
 
-# Workshop mapping
-workshop_mapping = {
+        # Workshop mapping
+        workshop_mapping = {
             'testing': 6, 'database security': 2, 'game development': 3,
             'data science': 1, 'system designing': 5, 'hacking': 4,
             'cloud computing': 0, 'web technologies': 7
         }
-selected_workshop = st.selectbox("Select a Workshop Attended:", list(workshop_mapping.keys()))
-workshop_value = workshop_mapping[selected_workshop]
+        selected_workshop = st.selectbox("Select a Workshop Attended:", list(workshop_mapping.keys()))
+        workshop_value = workshop_mapping[selected_workshop]
 
-    # Additional fields in full width
-    st.markdown("### 🏢 Career Preferences")
+        # Additional fields in full width
+        st.markdown("### 🏢 Career Preferences")
 
-    col3, col4 = st.columns(2)
+        col3, col4 = st.columns(2)
 
-    with col3:
-# Interested subjects mapping
-subject_mapping = {
-            'programming': 9, 'Management': 2, 'data engineering': 5,
-            'networks': 7, 'Software Engineering': 3, 'cloud computing': 4,
-            'parallel computing': 8, 'IOT': 1, 'Computer Architecture': 0, 'hacking': 6
-        }
-selected_subject = st.selectbox("Select an Interested Subject:", list(subject_mapping.keys()))
-subject_value = subject_mapping[selected_subject]
+        with col3:
+            # Interested subjects mapping
+            subject_mapping = {
+                'programming': 9, 'Management': 2, 'data engineering': 5,
+                'networks': 7, 'Software Engineering': 3, 'cloud computing': 4,
+                'parallel computing': 8, 'IOT': 1, 'Computer Architecture': 0, 'hacking': 6
+            }
+            selected_subject = st.selectbox("Select an Interested Subject:", list(subject_mapping.keys()))
+            subject_value = subject_mapping[selected_subject]
 
-# Interested career area mapping
-career_area_mapping = {
-            'testing': 5, 'system developer': 4, 'Business process analyst': 0,
-            'security': 3, 'developer': 2, 'cloud computing': 1
-        }
-selected_career_area = st.selectbox("Select Your Interested Career Area:", list(career_area_mapping.keys()))
-career_area_value = career_area_mapping[selected_career_area]
+            # Interested career area mapping
+            career_area_mapping = {
+                'testing': 5, 'system developer': 4, 'Business process analyst': 0,
+                'security': 3, 'developer': 2, 'cloud computing': 1
+            }
+            selected_career_area = st.selectbox("Select Your Interested Career Area:", list(career_area_mapping.keys()))
+            career_area_value = career_area_mapping[selected_career_area]
 
-    with col4:
-# Company type mapping
-company_type_mapping = {
-            'BPA': 0, 'Cloud Services': 1, 'product development': 9,
-            'Testing and Maintainance Services': 7, 'SAaS services': 4,
-            'Web Services': 8, 'Finance': 2, 'Sales and Marketing': 5,
-            'Product based': 3, 'Service Based': 6
-        }
-selected_company_type = st.selectbox("Type of company you want to settle in?", list(company_type_mapping.keys()))
-company_type_value = company_type_mapping[selected_company_type]
+        with col4:
+            # Company type mapping
+            company_type_mapping = {
+                'BPA': 0, 'Cloud Services': 1, 'product development': 9,
+                'Testing and Maintainance Services': 7, 'SAaS services': 4,
+                'Web Services': 8, 'Finance': 2, 'Sales and Marketing': 5,
+                'Product based': 3, 'Service Based': 6
+            }
+            selected_company_type = st.selectbox("Type of company you want to settle in?", list(company_type_mapping.keys()))
+            company_type_value = company_type_mapping[selected_company_type]
 
-    # Create input DataFrame (preserved original logic)
-    input_data = pd.DataFrame([[Logical_quotient_rating, coding_skills_rating, hackathons, public_speaking_points, self_learning_capability,
-                                extra_courses, senior_input, team_work, introvert, rw_skills,
-                                memory_score, b_hard_worker, b_smart_worker, a_management, a_technical, subject_value,
-                                book_type_value, cert_value, workshop_value, company_type_value, career_area_value]], columns=[
-        'Logical quotient rating', 'coding skills rating', 'hackathons', 'public speaking points', 'self-learning capability?',
-        'Extra-courses did', 'Taken inputs from seniors or elders', 'worked in teams ever?', 'Introvert', 'reading and writing skills',
-        'memory capability score', 'B_hard worker', 'B_smart worker', 'A_Management', 'A_Technical', 'Interested subjects_code',
-        'Interested Type of Books_code', 'certifications_code', 'workshops_code', 'Type of company want to settle in?_code',
-        'interested career area _code'
-    ])
+        # Create input DataFrame (preserved original logic)
+        input_data = pd.DataFrame([[Logical_quotient_rating, coding_skills_rating, hackathons, public_speaking_points, self_learning_capability,
+                                    extra_courses, senior_input, team_work, introvert, rw_skills,
+                                    memory_score, b_hard_worker, b_smart_worker, a_management, a_technical, subject_value,
+                                    book_type_value, cert_value, workshop_value, company_type_value, career_area_value]], columns=[
+            'Logical quotient rating', 'coding skills rating', 'hackathons', 'public speaking points', 'self-learning capability?',
+            'Extra-courses did', 'Taken inputs from seniors or elders', 'worked in teams ever?', 'Introvert', 'reading and writing skills',
+            'memory capability score', 'B_hard worker', 'B_smart worker', 'A_Management', 'A_Technical', 'Interested subjects_code',
+            'Interested Type of Books_code', 'certifications_code', 'workshops_code', 'Type of company want to settle in?_code',
+            'interested career area _code'
+        ])
 
-    # Predict button
-    st.markdown("---")
-    col_predict, col_reset = st.columns([3, 1])
-    
-    with col_predict:
-        if st.button("🔍 Predict My Career Path", use_container_width=True):
-            with st.spinner("🤖 Analyzing your profile..."):
-                prediction = model.predict(input_data)[0]
-                
-                # Save prediction if user is logged in
-                if st.session_state.authenticated:
-                    save_prediction(st.session_state.user_info['id'], prediction, input_data.to_dict())
-                
-                st.balloons()
-                st.success(f"✅ **Recommended Job Role: {prediction}**")
-                
-                # Show additional insights
-                st.markdown("### 📊 Your Profile Summary")
-                col_a, col_b, col_c, col_d = st.columns(4)
-                
-                with col_a:
-                    st.metric("Logic Rating", f"{Logical_quotient_rating}/10")
-                with col_b:
-                    st.metric("Coding Skills", f"{coding_skills_rating}/10")
-                with col_c:
-                    st.metric("Hackathons", hackathons)
-                with col_d:
-                    st.metric("Public Speaking", f"{public_speaking_points}/10")
-                
-                # Show Related Career Fields
-                st.markdown("---")
-                st.markdown("### 🎯 Related Career Fields You Can Explore")
-                
-                if prediction in RELATED_CAREERS:
-                    related_careers = RELATED_CAREERS[prediction]
+        # Predict button
+        st.markdown("---")
+        col_predict, col_reset = st.columns([3, 1])
+        
+        with col_predict:
+            if st.button("🔍 Predict My Career Path", use_container_width=True):
+                with st.spinner("🤖 Analyzing your profile..."):
+                    prediction = model.predict(input_data)[0]
                     
-                    st.info(f"💡 Based on your predicted role **{prediction}**, here are 3 related career paths you can also consider:")
+                    # Save prediction if user is logged in
+                    if st.session_state.authenticated:
+                        save_prediction(st.session_state.user_info['id'], prediction, input_data.to_dict())
                     
-                    # Display related careers in columns
-                    col1, col2, col3 = st.columns(3)
+                    st.balloons()
+                    st.success(f"✅ **Recommended Job Role: {prediction}**")
                     
-                    with col1:
-                        st.markdown(f"""
-                        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-                                    padding: 1rem; border-radius: 10px; text-align: center; color: white; margin: 0.5rem 0;">
-                            <h4>🚀 {related_careers[0]}</h4>
-                        </div>
-                        """, unsafe_allow_html=True)
+                    # Show additional insights
+                    st.markdown("### 📊 Your Profile Summary")
+                    col_a, col_b, col_c, col_d = st.columns(4)
                     
-                    with col2:
-                        st.markdown(f"""
-                        <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); 
-                                    padding: 1rem; border-radius: 10px; text-align: center; color: white; margin: 0.5rem 0;">
-                            <h4>💻 {related_careers[1]}</h4>
-                        </div>
-                        """, unsafe_allow_html=True)
+                    with col_a:
+                        st.metric("Logic Rating", f"{Logical_quotient_rating}/10")
+                    with col_b:
+                        st.metric("Coding Skills", f"{coding_skills_rating}/10")
+                    with col_c:
+                        st.metric("Hackathons", hackathons)
+                    with col_d:
+                        st.metric("Public Speaking", f"{public_speaking_points}/10")
                     
-                    with col3:
-                        st.markdown(f"""
-                        <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); 
-                                    padding: 1rem; border-radius: 10px; text-align: center; color: white; margin: 0.5rem 0;">
-                            <h4>⚡ {related_careers[2]}</h4>
-                        </div>
-                        """, unsafe_allow_html=True)
-                    
-                    # Career Roadmaps Section
+                    # Show Related Career Fields
                     st.markdown("---")
-                    st.markdown("### 🗺️ Comprehensive Career Development Guide")
+                    st.markdown("### 🎯 Related Career Fields You Can Explore")
                     
-                    if not OPENAI_AVAILABLE:
-                        st.info("💡 **Note**: Using built-in roadmaps. For AI-generated personalized roadmaps, configure your OpenAI API key for detailed, industry-specific guidance.")
-                    else:
-                        st.success("🤖 **AI-Powered**: Generating personalized, detailed roadmaps with current industry insights and specific resources.")
-                    
-                    # Create tabs for each career with comprehensive content
-                    tab1, tab2, tab3 = st.tabs([
-                        f"🎯 {related_careers[0]}", 
-                        f"💻 {related_careers[1]}", 
-                        f"⚡ {related_careers[2]}"
-                    ])
-                    
-                    with tab1:
-                        st.markdown(f"# 🎯 Complete Guide: {related_careers[0]}")
+                    if prediction in RELATED_CAREERS:
+                        related_careers = RELATED_CAREERS[prediction]
                         
-                        # Create sub-tabs for different aspects
-                        subtab1, subtab2, subtab3 = st.tabs(["📚 Learning Roadmap", "🛠️ Project Ideas", "📖 Resources"])
+                        st.info(f"💡 Based on your predicted role **{prediction}**, here are 3 related career paths you can also consider:")
                         
-                        with subtab1:
-                            if OPENAI_AVAILABLE:
-                                with st.spinner(f"🤖 Generating comprehensive roadmap for {related_careers[0]}..."):
+                        # Display related careers in columns
+                        col1, col2, col3 = st.columns(3)
+                        
+                        with col1:
+                            st.markdown(f"""
+                            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+                                        padding: 1rem; border-radius: 10px; text-align: center; color: white; margin: 0.5rem 0;">
+                                <h4>🚀 {related_careers[0]}</h4>
+                            </div>
+                            """, unsafe_allow_html=True)
+                        
+                        with col2:
+                            st.markdown(f"""
+                            <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); 
+                                        padding: 1rem; border-radius: 10px; text-align: center; color: white; margin: 0.5rem 0;">
+                                <h4>💻 {related_careers[1]}</h4>
+                            </div>
+                            """, unsafe_allow_html=True)
+                        
+                        with col3:
+                            st.markdown(f"""
+                            <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); 
+                                        padding: 1rem; border-radius: 10px; text-align: center; color: white; margin: 0.5rem 0;">
+                                <h4>⚡ {related_careers[2]}</h4>
+                            </div>
+                            """, unsafe_allow_html=True)
+                        
+                        # Career Roadmaps Section
+                        st.markdown("---")
+                        st.markdown("### 🗺️ Comprehensive Career Development Guide")
+                        
+                        if not OPENAI_AVAILABLE:
+                            st.info("💡 **Note**: Using built-in roadmaps. For AI-generated personalized roadmaps, configure your OpenAI API key for detailed, industry-specific guidance.")
+                        else:
+                            st.success("🤖 **AI-Powered**: Generating personalized, detailed roadmaps with current industry insights and specific resources.")
+                        
+                        # Create tabs for each career with comprehensive content
+                        tab1, tab2, tab3 = st.tabs([
+                            f"🎯 {related_careers[0]}", 
+                            f"💻 {related_careers[1]}", 
+                            f"⚡ {related_careers[2]}"
+                        ])
+                        
+                        with tab1:
+                            st.markdown(f"# 🎯 Complete Guide: {related_careers[0]}")
+                            
+                            # Create sub-tabs for different aspects
+                            subtab1, subtab2, subtab3 = st.tabs(["📚 Learning Roadmap", "🛠️ Project Ideas", "📖 Resources"])
+                            
+                            with subtab1:
+                                if OPENAI_AVAILABLE:
+                                    with st.spinner(f"🤖 Generating comprehensive roadmap for {related_careers[0]}..."):
+                                        roadmap1 = get_career_roadmap(related_careers[0])
+                                        st.markdown(roadmap1)
+                                else:
                                     roadmap1 = get_career_roadmap(related_careers[0])
                                     st.markdown(roadmap1)
-                            else:
-                                roadmap1 = get_career_roadmap(related_careers[0])
-                                st.markdown(roadmap1)
-                        
-                        with subtab2:
-                            if OPENAI_AVAILABLE:
-                                with st.spinner(f"🛠️ Generating project ideas for {related_careers[0]}..."):
+                            
+                            with subtab2:
+                                if OPENAI_AVAILABLE:
+                                    with st.spinner(f"🛠️ Generating project ideas for {related_careers[0]}..."):
+                                        projects1 = get_project_ideas(related_careers[0])
+                                        st.markdown(projects1)
+                                else:
                                     projects1 = get_project_ideas(related_careers[0])
                                     st.markdown(projects1)
-                            else:
-                                projects1 = get_project_ideas(related_careers[0])
-                                st.markdown(projects1)
-                        
-                        with subtab3:
-                            if OPENAI_AVAILABLE:
-                                with st.spinner(f"📖 Generating learning resources for {related_careers[0]}..."):
+                            
+                            with subtab3:
+                                if OPENAI_AVAILABLE:
+                                    with st.spinner(f"📖 Generating learning resources for {related_careers[0]}..."):
+                                        resources1 = get_learning_resources(related_careers[0])
+                                        st.markdown(resources1)
+                                else:
                                     resources1 = get_learning_resources(related_careers[0])
                                     st.markdown(resources1)
-                            else:
-                                resources1 = get_learning_resources(related_careers[0])
-                                st.markdown(resources1)
-                    
-                    with tab2:
-                        st.markdown(f"# 💻 Complete Guide: {related_careers[1]}")
                         
-                        # Create sub-tabs for different aspects
-                        subtab1, subtab2, subtab3 = st.tabs(["📚 Learning Roadmap", "🛠️ Project Ideas", "📖 Resources"])
-                        
-                        with subtab1:
-                            if OPENAI_AVAILABLE:
-                                with st.spinner(f"🤖 Generating comprehensive roadmap for {related_careers[1]}..."):
+                        with tab2:
+                            st.markdown(f"# 💻 Complete Guide: {related_careers[1]}")
+                            
+                            # Create sub-tabs for different aspects
+                            subtab1, subtab2, subtab3 = st.tabs(["📚 Learning Roadmap", "🛠️ Project Ideas", "📖 Resources"])
+                            
+                            with subtab1:
+                                if OPENAI_AVAILABLE:
+                                    with st.spinner(f"🤖 Generating comprehensive roadmap for {related_careers[1]}..."):
+                                        roadmap2 = get_career_roadmap(related_careers[1])
+                                        st.markdown(roadmap2)
+                                else:
                                     roadmap2 = get_career_roadmap(related_careers[1])
                                     st.markdown(roadmap2)
-                            else:
-                                roadmap2 = get_career_roadmap(related_careers[1])
-                                st.markdown(roadmap2)
-                        
-                        with subtab2:
-                            if OPENAI_AVAILABLE:
-                                with st.spinner(f"🛠️ Generating project ideas for {related_careers[1]}..."):
+                            
+                            with subtab2:
+                                if OPENAI_AVAILABLE:
+                                    with st.spinner(f"🛠️ Generating project ideas for {related_careers[1]}..."):
+                                        projects2 = get_project_ideas(related_careers[1])
+                                        st.markdown(projects2)
+                                else:
                                     projects2 = get_project_ideas(related_careers[1])
                                     st.markdown(projects2)
-                            else:
-                                projects2 = get_project_ideas(related_careers[1])
-                                st.markdown(projects2)
-                        
-                        with subtab3:
-                            if OPENAI_AVAILABLE:
-                                with st.spinner(f"📖 Generating learning resources for {related_careers[1]}..."):
+                            
+                            with subtab3:
+                                if OPENAI_AVAILABLE:
+                                    with st.spinner(f"📖 Generating learning resources for {related_careers[1]}..."):
+                                        resources2 = get_learning_resources(related_careers[1])
+                                        st.markdown(resources2)
+                                else:
                                     resources2 = get_learning_resources(related_careers[1])
                                     st.markdown(resources2)
-                            else:
-                                resources2 = get_learning_resources(related_careers[1])
-                                st.markdown(resources2)
-                    
-                    with tab3:
-                        st.markdown(f"# ⚡ Complete Guide: {related_careers[2]}")
                         
-                        # Create sub-tabs for different aspects
-                        subtab1, subtab2, subtab3 = st.tabs(["📚 Learning Roadmap", "🛠️ Project Ideas", "📖 Resources"])
-                        
-                        with subtab1:
-                            if OPENAI_AVAILABLE:
-                                with st.spinner(f"🤖 Generating comprehensive roadmap for {related_careers[2]}..."):
+                        with tab3:
+                            st.markdown(f"# ⚡ Complete Guide: {related_careers[2]}")
+                            
+                            # Create sub-tabs for different aspects
+                            subtab1, subtab2, subtab3 = st.tabs(["📚 Learning Roadmap", "🛠️ Project Ideas", "📖 Resources"])
+                            
+                            with subtab1:
+                                if OPENAI_AVAILABLE:
+                                    with st.spinner(f"🤖 Generating comprehensive roadmap for {related_careers[2]}..."):
+                                        roadmap3 = get_career_roadmap(related_careers[2])
+                                        st.markdown(roadmap3)
+                                else:
                                     roadmap3 = get_career_roadmap(related_careers[2])
                                     st.markdown(roadmap3)
-                            else:
-                                roadmap3 = get_career_roadmap(related_careers[2])
-                                st.markdown(roadmap3)
-                        
-                        with subtab2:
-                            if OPENAI_AVAILABLE:
-                                with st.spinner(f"🛠️ Generating project ideas for {related_careers[2]}..."):
+                            
+                            with subtab2:
+                                if OPENAI_AVAILABLE:
+                                    with st.spinner(f"🛠️ Generating project ideas for {related_careers[2]}..."):
+                                        projects3 = get_project_ideas(related_careers[2])
+                                        st.markdown(projects3)
+                                else:
                                     projects3 = get_project_ideas(related_careers[2])
                                     st.markdown(projects3)
-                            else:
-                                projects3 = get_project_ideas(related_careers[2])
-                                st.markdown(projects3)
-                        
-                        with subtab3:
-                            if OPENAI_AVAILABLE:
-                                with st.spinner(f"📖 Generating learning resources for {related_careers[2]}..."):
+                            
+                            with subtab3:
+                                if OPENAI_AVAILABLE:
+                                    with st.spinner(f"📖 Generating learning resources for {related_careers[2]}..."):
+                                        resources3 = get_learning_resources(related_careers[2])
+                                        st.markdown(resources3)
+                                else:
                                     resources3 = get_learning_resources(related_careers[2])
                                     st.markdown(resources3)
-                            else:
-                                resources3 = get_learning_resources(related_careers[2])
-                                st.markdown(resources3)
-                    
-                    # Additional Career Guidance
+                        
+                        # Additional Career Guidance
+                        st.markdown("---")
+                        st.markdown("### 💡 Next Steps")
+                        st.info("""
+                        **🎯 How to Use This Information:**
+                        1. **Primary Path**: Focus on your predicted role - **{}**
+                        2. **Explore Options**: Consider the 3 related career fields based on your interests
+                        3. **Follow Roadmaps**: Use the detailed learning paths above to build required skills
+                        4. **Start Learning**: Begin with Foundation level skills and progress step by step
+                        5. **Build Projects**: Apply your learning through hands-on projects
+                        """.format(prediction))
+                        
+                    else:
+                        st.warning("Related career recommendations not available for this role.")
+                        
+                    # Final motivation message
                     st.markdown("---")
-                    st.markdown("### 💡 Next Steps")
-                    st.info("""
-                    **🎯 How to Use This Information:**
-                    1. **Primary Path**: Focus on your predicted role - **{}**
-                    2. **Explore Options**: Consider the 3 related career fields based on your interests
-                    3. **Follow Roadmaps**: Use the detailed learning paths above to build required skills
-                    4. **Start Learning**: Begin with Foundation level skills and progress step by step
-                    5. **Build Projects**: Apply your learning through hands-on projects
-                    """.format(prediction))
-                    
-                else:
-                    st.warning("Related career recommendations not available for this role.")
-                    
-                # Final motivation message
-                st.markdown("---")
-                st.success("🌟 **Remember**: Your career journey is unique. Use this as a guide, but don't limit yourself to these suggestions. Keep learning and exploring! 🚀")
-    
-    with col_reset:
-        if st.button("🔄 Reset", use_container_width=True):
-            st.rerun()
+                    st.success("🌟 **Remember**: Your career journey is unique. Use this as a guide, but don't limit yourself to these suggestions. Keep learning and exploring! 🚀")
+        
+        with col_reset:
+            if st.button("🔄 Reset", use_container_width=True):
+                st.rerun()
 
 def show_dashboard():
     """Display user dashboard"""
