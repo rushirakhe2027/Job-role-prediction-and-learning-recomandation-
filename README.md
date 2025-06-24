@@ -12,6 +12,67 @@
 
 CareerPath AI is a comprehensive career guidance system that helps individuals discover their ideal career paths through data-driven predictions and provides personalized learning roadmaps to achieve their career goals. The system combines traditional machine learning with modern AI technologies to deliver accurate predictions and actionable career advice.
 
+## 🚀 How to Run the Project
+
+### **Prerequisites**
+- Python 3.8 or higher
+- pip (Python package installer)
+
+### **Step 1: Clone the Repository**
+```bash
+git clone https://github.com/rushirakhe2027/Job-role-prediction-and-learning-recomandation-.git
+cd Job-role-prediction-and-learning-recomandation-
+```
+
+### **Step 2: Install Dependencies**
+```bash
+pip install -r requirements.txt
+```
+
+### **Step 3: Run the Application**
+```bash
+streamlit run ui.py
+```
+
+### **Step 4: Access the Application**
+Open your web browser and navigate to:
+```
+http://localhost:8501
+```
+
+### **Optional: Enable AI-Generated Roadmaps**
+For enhanced AI-powered roadmaps, configure your OpenAI API key:
+
+**Method 1: Environment Variable (Recommended)**
+```bash
+# Windows
+set OPENAI_API_KEY=your-api-key-here
+
+# macOS/Linux
+export OPENAI_API_KEY=your-api-key-here
+```
+
+**Method 2: Configuration File**
+1. Copy `config_template.py` to `config.py`
+2. Edit `config.py` and add your OpenAI API key
+3. The system will automatically detect and use it
+
+**Note**: The application works perfectly with built-in roadmaps if no API key is provided.
+
+### **Troubleshooting**
+**If you encounter import errors:**
+```bash
+pip install --upgrade streamlit pandas scikit-learn joblib openai numpy
+```
+
+**If port 8501 is already in use:**
+```bash
+streamlit run ui.py --server.port 8502
+```
+
+**For Windows permission issues:**
+Run Command Prompt or PowerShell as Administrator
+
 ### 🎯 What This Project Does
 
 1. **Career Prediction**: Analyzes 20+ personal and professional parameters to predict the most suitable job role from 12 different career paths
